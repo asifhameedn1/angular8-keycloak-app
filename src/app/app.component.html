@@ -1,0 +1,23 @@
+<header>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/admin" routerLinkActive="active">Admin</a>
+  </nav>
+
+  <div class="user" *ngIf="!startupError">
+    <ng-container *ngIf="auth.isLoggedIn; else loginBtn">
+      <span>{{ auth.username }}</span>
+      <button (click)="auth.logout()">Log out</button>
+    </ng-container>
+    <ng-template #loginBtn>
+      <button (click)="auth.login()">Log in</button>
+    </ng-template>
+  </div>
+</header>
+
+<div class="banner" *ngIf="startupError">{{ startupError }}</div>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

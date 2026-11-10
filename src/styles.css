@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #222;
+}
+
+button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+pre {
+  background: #f4f4f4;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+pre.error {
+  background: #fdecea;
+  color: #8a1c13;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 16px;
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin: 0;
+}

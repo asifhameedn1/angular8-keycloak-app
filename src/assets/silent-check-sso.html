@@ -1,0 +1,10 @@
+<!doctype html>
+<html>
+  <body>
+    <script>
+      // Loaded in a hidden iframe by keycloak-js during check-sso; hands the
+      // auth response back to the app without a full-page redirect.
+      parent.postMessage(location.href, location.origin);
+    </script>
+  </body>
+</html>
