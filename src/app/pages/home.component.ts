@@ -8,7 +8,7 @@ import { ApiService } from '../api.service';
     <h1>Home</h1>
     <p>This page is public.</p>
 
-    <ng-container *ngIf="auth.isLoggedIn; else anon">
+    <template [ngIf]="auth.isLoggedIn">
       <p>Signed in as <strong>{{ auth.displayName }}</strong>. Try the API:</p>
       <div class="actions">
         <button (click)="call('values')">GET api/values</button>
@@ -16,10 +16,8 @@ import { ApiService } from '../api.service';
         <button (click)="call('admin')">GET api/values/admin</button>
       </div>
       <pre *ngIf="result" [class.error]="isError">{{ result }}</pre>
-    </ng-container>
-    <ng-template #anon>
-      <p>You're not signed in. <button (click)="auth.login()">Log in</button></p>
-    </ng-template>
+    </template>
+    <p *ngIf="!auth.isLoggedIn">You're not signed in. <button (click)="auth.login()">Log in</button></p>
   `
 })
 export class HomeComponent {

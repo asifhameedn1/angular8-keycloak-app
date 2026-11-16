@@ -8,7 +8,7 @@ import { keycloakStartup } from './auth/keycloak-init';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular8-keycloak-app';
+  title = 'angular2-keycloak-app';
   startupError = keycloakStartup.error;
 
   constructor(public auth: AuthService) {}

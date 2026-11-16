@@ -1,0 +1,7 @@
+{
+  "name": "spdy",
+  "version": "3.4.7-stub",
+  "description": "Stand-in for spdy so webpack-dev-server 2.x loads on current Node (see index.js).",
+  "main": "index.js",
+  "private": true
+}

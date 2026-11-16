@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
+import { KeycloakService } from './keycloak.service';
 import { environment } from '../../environments/environment';
 
 /** Convenience wrapper so components don't talk to keycloak-js directly. */
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AuthService {
   constructor(private keycloak: KeycloakService) {}
 
@@ -49,15 +49,16 @@ export class AuthService {
 
   /** True if the user has every given role (realm or this client's roles). */
   hasRoles(...roles: string[]): boolean {
-    const granted = [...this.realmRoles, ...this.clientRoles];
-    return roles.every(r => granted.includes(r));
+    const granted = this.realmRoles.concat(this.clientRoles);
+    return roles.every(r => granted.indexOf(r) !== -1);
   }
 
   login(): Promise<void> {
     return this.keycloak.login({ redirectUri: window.location.href });
   }
 
+  /** Ends the Keycloak session, then comes back with ?relogin so the login page opens. */
   logout(): Promise<void> {
-    return this.keycloak.logout(window.location.origin + '/');
+    return this.keycloak.logout(window.location.origin + '/?relogin=1');
   }
 }

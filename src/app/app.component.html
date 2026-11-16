@@ -6,13 +6,11 @@
   </nav>
 
   <div class="user" *ngIf="!startupError">
-    <ng-container *ngIf="auth.isLoggedIn; else loginBtn">
+    <template [ngIf]="auth.isLoggedIn">
       <span>{{ auth.username }}</span>
       <button (click)="auth.logout()">Log out</button>
-    </ng-container>
-    <ng-template #loginBtn>
-      <button (click)="auth.login()">Log in</button>
-    </ng-template>
+    </template>
+    <button *ngIf="!auth.isLoggedIn" (click)="auth.login()">Log in</button>
   </div>
 </header>
 
